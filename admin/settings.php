@@ -10,6 +10,7 @@ if (!isLoggedIn() || !isAdmin()) {
 $settings = [
     'site_name' => 'AlquimiaTechnologic',
     'site_description' => 'Especialistas en software personalizado, aceites esenciales y figuras artesanales',
+    'hero_image_url' => 'assets/images/placeholder.jpg',
     'contact_email' => 'kevinmoyolema13@gmail.com',
     'contact_phone' => '+593 983015307',
     'whatsapp_number' => '+593 983015307',
@@ -248,10 +249,36 @@ $settings = [
                                                             <!-- Lista de favicons subidos -->
                                                             <div id="faviconImagePreview" class="image-preview mt-2"></div>
                                                         </div>
-                                                        <input type="hidden" id="faviconImagesJson">
-                                                    </div>
+                                                    <input type="hidden" id="faviconImagesJson">
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Imagen del Hero</label>
+                                                    <input type="text" class="form-control mb-2" name="hero_image_url" id="heroImageUrl" value="<?php echo $settings['hero_image_url']; ?>" placeholder="URL o subir imagen">
+                                                    <div class="upload-section">
+                                                        <div class="mb-2">
+                                                            <input type="file" id="heroFileUpload" name="hero_file" accept="image/*" class="form-control" style="display: none;">
+                                                            <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('heroFileUpload').click()">
+                                                                <i class="fas fa-folder-open me-2"></i>Seleccionar Imagen
+                                                            </button>
+                                                        </div>
+                                                        <div id="heroSelectedImagePreview" class="mb-3" style="display: none;">
+                                                            <h6>Imagen Seleccionada:</h6>
+                                                            <div class="selected-images-container"></div>
+                                                            <button type="button" class="btn btn-success mt-2" onclick="uploadHeroImage()">
+                                                                <i class="fas fa-cloud-upload-alt me-2"></i>Subir Imagen
+                                                            </button>
+                                                        </div>
+                                                        <div id="heroImagePreview" class="image-preview mt-2"></div>
+                                                    </div>
+                                                    <input type="hidden" id="heroImagesJson">
+                                                </div>
+                                            </div>
+                                        </div>
                                         </form>
                                     </div>
 
@@ -490,6 +517,7 @@ $settings = [
         function setupSettingsImageSelection() {
             const logoFileUpload = document.getElementById('logoFileUpload');
             const faviconFileUpload = document.getElementById('faviconFileUpload');
+            const heroFileUpload = document.getElementById('heroFileUpload');
             
             if (logoFileUpload) {
                 logoFileUpload.addEventListener('change', function(e) {
@@ -500,6 +528,12 @@ $settings = [
             if (faviconFileUpload) {
                 faviconFileUpload.addEventListener('change', function(e) {
                     handleSettingsImageSelection(e.target.files, 'faviconSelectedImagePreview');
+                });
+            }
+
+            if (heroFileUpload) {
+                heroFileUpload.addEventListener('change', function(e) {
+                    handleSettingsImageSelection(e.target.files, 'heroSelectedImagePreview');
                 });
             }
         }
@@ -652,6 +686,61 @@ $settings = [
             .catch(error => {
                 progressBar.remove();
                 showNotification('Error al subir favicon: ' + error.message, 'error');
+            console.error('Upload error:', error);
+        });
+        }
+
+        // Subir imagen del hero
+        function uploadHeroImage() {
+            const heroFileUpload = document.getElementById('heroFileUpload');
+
+            if (!heroFileUpload || !heroFileUpload.files.length) {
+                alert('Por favor selecciona una imagen');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('images[]', heroFileUpload.files[0]);
+            formData.append('csrf_token', csrfToken);
+            formData.append('folder', 'settings');
+
+            const preview = document.getElementById('heroImagePreview');
+
+            const progressBar = document.createElement('div');
+            progressBar.className = 'upload-progress';
+            progressBar.innerHTML = '<div class="upload-progress-bar" style="width: 0%"></div>';
+            preview.appendChild(progressBar);
+
+            fetch('../admin/upload_handler_simple.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                progressBar.remove();
+
+                if (data.success) {
+                    preview.innerHTML = '';
+                    data.files.forEach(file => {
+                        const item = createImagePreviewItem(file.thumbnail, file.original);
+                        preview.appendChild(item);
+                    });
+
+                    document.getElementById('heroImageUrl').value = data.files[0].original;
+                    updateImagesJson();
+
+                    heroFileUpload.value = '';
+                    document.getElementById('heroSelectedImagePreview').style.display = 'none';
+
+                    showNotification('Imagen subida correctamente', 'success');
+                } else {
+                    const msg = data.errors && data.errors.length ? data.errors.join('; ') : data.message;
+                    showNotification('Error al subir imagen: ' + msg, 'error');
+                }
+            })
+            .catch(error => {
+                progressBar.remove();
+                showNotification('Error al subir imagen: ' + error.message, 'error');
                 console.error('Upload error:', error);
             });
         }

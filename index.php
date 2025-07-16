@@ -13,6 +13,7 @@ foreach ($featuredProducts as &$fp) {
 }
 unset($fp);
 $categories = $category->getAllCategories();
+$heroImage = getSiteSetting('hero_image_url', 'assets/images/placeholder.jpg');
 ?>
 
 <!DOCTYPE html>
@@ -183,7 +184,7 @@ $categories = $category->getAllCategories();
                 </div>
                 
                 <div class="col-lg-6 hero-image text-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <img src="assets/images/placeholder.jpg"
+                    <img src="<?php echo htmlspecialchars($heroImage); ?>"
                          alt="Tecnología y Innovación" class="img-fluid">
                 </div>
             </div>

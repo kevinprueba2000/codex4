@@ -157,8 +157,8 @@ if (file_exists($teamFile)) {
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Nuestra Historia" class="img-fluid rounded-custom shadow-lg">
+                    <img src="assets/images/placeholder.jpg"
+                           alt="Nuestra Historia" class="img-fluid rounded-custom shadow-lg">
                 </div>
             </div>
         </div>

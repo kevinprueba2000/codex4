@@ -157,9 +157,9 @@ if ($orderId) {
                                 <?php foreach ($orderItems as $item): ?>
                                     <div class="row align-items-center mb-3 p-3 border rounded">
                                         <div class="col-md-2">
-                                            <img src="<?php echo $item['image'] ?: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'; ?>" 
-                                                 alt="<?php echo htmlspecialchars($item['name']); ?>" 
-                                                 class="img-fluid rounded">
+                                            <img src="<?php echo $item['image'] ?: 'assets/images/placeholder.jpg'; ?>"
+                                                   alt="<?php echo htmlspecialchars($item['name']); ?>"
+                                                   class="img-fluid rounded">
                                         </div>
                                         <div class="col-md-6">
                                             <h6 class="mb-1"><?php echo htmlspecialchars($item['name']); ?></h6>

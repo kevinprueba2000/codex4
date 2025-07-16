@@ -228,8 +228,8 @@ $users = $user->getAllUsers();
                                         <tr>
                                             <td><?php echo $userData['id']; ?></td>
                                             <td>
-                                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" 
-                                                     alt="<?php echo htmlspecialchars($userData['first_name'] . ' ' . $userData['last_name']); ?>" 
+                                                <img src="assets/images/placeholder.jpg"
+                                                     alt="<?php echo htmlspecialchars($userData['first_name'] . ' ' . $userData['last_name']); ?>"
                                                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
                                             </td>
                                             <td>
@@ -440,8 +440,8 @@ $users = $user->getAllUsers();
                     const modal = new bootstrap.Modal(document.getElementById('viewUserModal'));
                     document.getElementById('userDetails').innerHTML = `
                         <div class="text-center mb-3">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                 alt="Avatar" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+                            <img src="assets/images/placeholder.jpg"
+                                   alt="Avatar" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
                         </div>
                         <div class="row">
                             <div class="col-md-6">

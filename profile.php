@@ -119,7 +119,7 @@ $userOrders = $order->getOrdersByUserId($_SESSION['user_id']);
                     <div class="card border-0 shadow-lg">
                         <div class="card-body text-center">
                             <div class="mb-3">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                <img src="assets/images/placeholder.jpg"
                                      alt="Profile" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
                             </div>
                             <h5 class="fw-bold"><?php echo htmlspecialchars($userData['name']); ?></h5>

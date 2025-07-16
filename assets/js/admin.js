@@ -356,11 +356,22 @@ function createImagePreviewItem(thumbnail, original) {
     item.className = 'image-preview-item';
 
     const img = document.createElement('img');
-    const thumbSrc = thumbnail.startsWith('http') ? thumbnail : '../' + thumbnail.replace(/^\/+/, '');
-    img.src = thumbSrc;
+    let src = thumbnail || original;
+    if (src) {
+        src = src.startsWith('http') ? src : '../' + src.replace(/^\/+/, '');
+    }
+    img.src = src;
     img.alt = 'Preview';
     img.dataset.original = original;
-    
+
+    // Fallback si la miniatura falla al cargar
+    img.onerror = () => {
+        if (original && img.src !== original) {
+            const originalSrc = original.startsWith('http') ? original : '../' + original.replace(/^\/+/, '');
+            img.src = originalSrc;
+        }
+    };
+
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove-btn';
     removeBtn.innerHTML = '<i class="fas fa-times"></i>';
@@ -368,10 +379,10 @@ function createImagePreviewItem(thumbnail, original) {
         item.remove();
         updateImagesJson();
     };
-    
+
     item.appendChild(img);
     item.appendChild(removeBtn);
-    
+
     return item;
 }
 

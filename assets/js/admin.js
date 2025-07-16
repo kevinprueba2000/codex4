@@ -324,6 +324,9 @@ function handleFileUpload(source, preview, folder = 'products') {
                     } else if (hiddenInput.id === 'faviconImagesJson') {
                         const urlInput = document.getElementById('faviconUrl');
                         if (urlInput) urlInput.value = images[0] || '';
+                    } else if (hiddenInput.id === 'heroImagesJson') {
+                        const urlInput = document.getElementById('heroImageUrl');
+                        if (urlInput) urlInput.value = images[0] || '';
                     }
                 } catch (e) {
                     console.error('JSON parse error:', e);
@@ -417,6 +420,9 @@ function updateImagesJson() {
                 if (urlInput) urlInput.value = images[0] || '';
             } else if (hiddenInput.id === 'faviconImagesJson') {
                 const urlInput = document.getElementById('faviconUrl');
+                if (urlInput) urlInput.value = images[0] || '';
+            } else if (hiddenInput.id === 'heroImagesJson') {
+                const urlInput = document.getElementById('heroImageUrl');
                 if (urlInput) urlInput.value = images[0] || '';
             }
         }

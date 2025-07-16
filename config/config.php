@@ -88,6 +88,26 @@ function generateSlug($string) {
     return trim($slug, '-');
 }
 
+// Obtener un valor de la configuración del sitio almacenado en data/settings.json
+function getSiteSetting($key, $default = null) {
+    static $siteSettings = null;
+    if ($siteSettings === null) {
+        $settingsFile = __DIR__ . '/../data/settings.json';
+        if (file_exists($settingsFile)) {
+            $json = file_get_contents($settingsFile);
+            $data = json_decode($json, true);
+            if (is_array($data)) {
+                $siteSettings = $data;
+            } else {
+                $siteSettings = [];
+            }
+        } else {
+            $siteSettings = [];
+        }
+    }
+    return $siteSettings[$key] ?? $default;
+}
+
 // Configuración de errores (solo para desarrollo)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

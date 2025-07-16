@@ -44,15 +44,12 @@ Una tienda web completa desarrollada en PHP con MySQL, inspirada en el diseño m
 3. **Configurar la conexión**:
    - Abre `config/database.php`
    - Verifica que los datos de conexión sean correctos:
-    ```php
-    private $host = 'localhost';
-    private $dbname = 'alquimia_technologic';
-    private $username = 'root';
-    private $password = '';
-    ```
-   - Guarda los cambios y ejecuta `php check_database_connection.php` para
-     validar que la conexión a MySQL funcione correctamente. El script mostrará
-     un mensaje detallando el estado de la conexión.
+     ```php
+     private $host = 'localhost';
+     private $dbname = 'alquimia_technologic';
+     private $username = 'root';
+     private $password = '';
+     ```
 
 ### 3. Acceder al Sistema
 
@@ -209,7 +206,6 @@ El sitio está optimizado para:
 Error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost'
 ```
 **Solución**: Verifica que MySQL esté ejecutándose en XAMPP y que las credenciales en `config/database.php` sean correctas.
-También puedes ejecutar `php check_database_connection.php` para confirmar la conexión y obtener detalles del error en caso de falla.
 
 ### Error 404 en Rutas
 ```

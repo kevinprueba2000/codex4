@@ -9,6 +9,8 @@ echo "<h1>🧪 Test del Sistema - AlquimiaTechnologic</h1>";
 
 // Test 1: Conexión a base de datos
 echo "<h2>1. Test de Conexión a Base de Datos</h2>";
+$database = null;
+$db = null;
 try {
     $database = new Database();
     $db = $database->getConnection();
@@ -133,7 +135,11 @@ echo "<h2>12. Test de Base de Datos</h2>";
 try {
     $tables = ['users', 'products', 'categories', 'orders'];
     foreach ($tables as $table) {
-        $stmt = $db->prepare("SHOW TABLES LIKE ?");
+        if ($database && method_exists($database, 'isSQLite') && $database->isSQLite()) {
+            $stmt = $db->prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?");
+        } else {
+            $stmt = $db->prepare("SHOW TABLES LIKE ?");
+        }
         $stmt->execute([$table]);
         $exists = $stmt->fetch();
         echo "✅ Tabla $table: " . ($exists ? 'Existe' : 'No existe') . "<br>";

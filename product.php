@@ -163,7 +163,10 @@ unset($rp);
                         <div class="main-image mb-3">
                             <img src="<?php echo htmlspecialchars($mainImage); ?>"
                                  alt="<?php echo htmlspecialchars($productData['name']); ?>"
-                                 class="img-fluid rounded-custom shadow-lg" id="mainImage">
+                                 class="img-fluid rounded-custom shadow-lg"
+                                 id="mainImage"
+                                 loading="lazy"
+                                 onerror="this.src='assets/images/placeholder.jpg';">
                         </div>
                         <div class="thumbnail-images d-flex gap-2">
                             <?php if (!empty($productImages)): ?>
@@ -171,12 +174,16 @@ unset($rp);
                                     <img src="<?php echo htmlspecialchars($imgUrl); ?>"
                                          alt="Thumbnail"
                                          class="img-thumbnail thumbnail-img <?php echo $index === 0 ? 'active' : ''; ?>"
-                                         onclick="changeImage(this)">
+                                         loading="lazy"
+                                         onclick="changeImage(this)"
+                                         onerror="this.src='assets/images/placeholder.jpg';">
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <img src="<?php echo htmlspecialchars($mainImage); ?>"
                                      alt="Thumbnail" class="img-thumbnail thumbnail-img active"
-                                     onclick="changeImage(this)">
+                                     loading="lazy"
+                                     onclick="changeImage(this)"
+                                     onerror="this.src='assets/images/placeholder.jpg';">
                             <?php endif; ?>
                         </div>
                     </div>
@@ -455,9 +462,11 @@ unset($rp);
                                 <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
                                     <div class="product-card h-100 hover-lift">
                                         <div class="product-image">
-                                            <img src="<?php echo $related['image'] ?: 'assets/images/placeholder.jpg'; ?>" 
-                                                 alt="<?php echo htmlspecialchars($related['name']); ?>" 
-                                                 class="img-fluid">
+                                            <img src="<?php echo $related['image'] ?: 'assets/images/placeholder.jpg'; ?>"
+                                                 alt="<?php echo htmlspecialchars($related['name']); ?>"
+                                                 class="img-fluid"
+                                                 loading="lazy"
+                                                 onerror="this.src='assets/images/placeholder.jpg';">
                                             <div class="product-overlay">
                                                 <button class="btn btn-light btn-sm me-2 hover-glow" onclick="addToCart(<?php echo $related['id']; ?>)" title="Agregar al carrito">
                                                     <i class="fas fa-shopping-cart"></i>

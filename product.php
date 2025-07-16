@@ -17,13 +17,26 @@ if (!$productData) {
     exit;
 }
 
-// Procesar imágenes del producto
+// Procesar imágenes del producto asegurando compatibilidad con distintos formatos
 $productImages = [];
 if (!empty($productData['images'])) {
-    $productImages = json_decode($productData['images'], true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        $productImages = [];
+    $decoded = json_decode($productData['images'], true);
+    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+        foreach ($decoded as $img) {
+            if (is_array($img)) {
+                $productImages[] = $img['original'] ?? ($img['thumbnail'] ?? '');
+            } elseif (is_string($img)) {
+                $productImages[] = $img;
+            }
+        }
+        // Limpiar valores vacíos
+        $productImages = array_values(array_filter($productImages));
     }
+}
+
+// Fallback si no hay imágenes válidas
+if (empty($productImages)) {
+    $productImages[] = Product::getImagePath($productData);
 }
 
 $mainImage = $productImages[0] ?? 'assets/images/placeholder.jpg';

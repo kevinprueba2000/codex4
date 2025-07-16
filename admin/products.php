@@ -775,23 +775,6 @@ $editProductId = isset($_GET['edit']) ? intval($_GET['edit']) : 0;
             }
         }
         
-        function updateImagesJson() {
-            const previews = document.querySelectorAll('.image-preview');
-            previews.forEach(preview => {
-                const images = Array.from(preview.querySelectorAll('img')).map(img => {
-                    // Extraer la ruta relativa del src
-                    let src = img.src;
-                    if (src.includes('../')) {
-                        src = src.split('../')[1];
-                    }
-                    return src;
-                });
-                const hiddenInput = preview.parentElement.querySelector('[id$="ImagesJson"]');
-                if (hiddenInput) {
-                    hiddenInput.value = JSON.stringify(images);
-                }
-            });
-        }
     </script>
 </body>
 </html>

@@ -265,9 +265,11 @@ $categories = $category->getAllCategories();
                         <div class="col-lg-3 col-md-6 mb-4 product-item" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
                             <div class="product-card h-100 hover-lift">
                                 <div class="product-image">
-                                    <img src="<?php echo $prod['image'] ?: 'assets/images/placeholder.jpg'; ?>" 
-                                         alt="<?php echo htmlspecialchars($prod['name']); ?>" 
-                                         class="img-fluid">
+                                    <img src="<?php echo $prod['image'] ?: 'assets/images/placeholder.jpg'; ?>"
+                                         alt="<?php echo htmlspecialchars($prod['name']); ?>"
+                                         class="img-fluid"
+                                         loading="lazy"
+                                         onerror="this.src='assets/images/placeholder.jpg';">
                                     <div class="product-overlay">
                                         <button class="btn btn-light btn-sm me-2 hover-glow" onclick="addToCart(<?php echo $prod['id']; ?>)" title="Agregar al carrito">
                                             <i class="fas fa-shopping-cart"></i>

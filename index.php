@@ -14,6 +14,10 @@ foreach ($featuredProducts as &$fp) {
 unset($fp);
 $categories = $category->getAllCategories();
 $heroImage = getSiteSetting('hero_image_url', 'assets/images/placeholder.jpg');
+// Convertir a URL absoluta si la ruta es relativa
+if ($heroImage && strpos($heroImage, 'http') !== 0) {
+    $heroImage = rtrim(SITE_URL, '/') . '/' . ltrim($heroImage, '/');
+}
 ?>
 
 <!DOCTYPE html>

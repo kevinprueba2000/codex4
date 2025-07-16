@@ -195,16 +195,7 @@ $heroImage = getSiteSetting('hero_image_url', 'assets/images/placeholder.jpg');
     <section class="section bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-center">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-shipping-fast text-primary fs-1"></i>
-                        </div>
-                        <h5 class="fw-bold">Envío Gratis</h5>
-                        <p class="text-muted">En pedidos superiores a $50.000</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-center">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-shield-alt text-success fs-1"></i>
@@ -213,7 +204,7 @@ $heroImage = getSiteSetting('hero_image_url', 'assets/images/placeholder.jpg');
                         <p class="text-muted">Pagos 100% seguros y protegidos</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-center">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-headset text-info fs-1"></i>
@@ -222,7 +213,7 @@ $heroImage = getSiteSetting('hero_image_url', 'assets/images/placeholder.jpg');
                         <p class="text-muted">Atención al cliente siempre disponible</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="text-center">
                         <div class="feature-icon mb-3">
                             <i class="fas fa-undo text-warning fs-1"></i>

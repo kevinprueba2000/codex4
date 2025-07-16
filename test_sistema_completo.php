@@ -104,8 +104,15 @@ try {
     
     foreach ($tables as $table) {
         try {
-            $stmt = $pdo->query("SHOW TABLES LIKE '$table'");
-            if ($stmt->rowCount() > 0) {
+            if ($database && method_exists($database, 'isSQLite') && $database->isSQLite()) {
+                $stmt = $pdo->prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?");
+                $stmt->execute([$table]);
+                $exists = $stmt->fetch();
+            } else {
+                $stmt = $pdo->query("SHOW TABLES LIKE '$table'");
+                $exists = $stmt->fetch();
+            }
+            if ($exists) {
                 echo "<div class='text-success'>
                         <i class='fas fa-check-circle me-2'></i>
                         <strong>Tabla $table:</strong> ✅ Existe

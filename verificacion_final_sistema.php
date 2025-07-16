@@ -202,22 +202,22 @@ echo "</div>";
 echo "<div class='section'>";
 echo "<h2>📦 Funcionalidades de Productos</h2>";
 
-runTest("Obtener productos", function() {
+runTest("Obtener productos", function() use ($product) {
     $products = $product->getAllProducts(5);
     return is_array($products) ? true : false;
 });
 
-runTest("Obtener productos destacados", function() {
+runTest("Obtener productos destacados", function() use ($product) {
     $featured = $product->getFeaturedProducts(5);
     return is_array($featured) ? true : false;
 });
 
-runTest("Obtener categorías", function() {
+runTest("Obtener categorías", function() use ($category) {
     $categories = $category->getAllCategories();
     return is_array($categories) ? true : false;
 });
 
-runTest("Búsqueda de productos", function() {
+runTest("Búsqueda de productos", function() use ($product) {
     $search = $product->searchProducts('test', 5);
     return is_array($search) ? true : false;
 });

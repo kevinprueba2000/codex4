@@ -223,6 +223,22 @@ Error: Permission denied
 ```
 **Solución**: Verifica que la carpeta del proyecto tenga permisos de lectura/escritura.
 
+## 🧪 Pruebas Locales sin MySQL
+
+Si no cuentas con un servidor MySQL disponible, puedes ejecutar las pruebas usando SQLite:
+
+1. Crea la base de datos de pruebas ejecutando:
+   ```bash
+   php setup_sqlite.php
+   ```
+2. Usa la variable de entorno `USE_SQLITE=1` al ejecutar los scripts de prueba:
+   ```bash
+   USE_SQLITE=1 php -f check_database_connection.php
+   USE_SQLITE=1 php -f test_system.php
+   USE_SQLITE=1 php -f test_upload_simple.php
+   ```
+
+
 ## 📞 Soporte
 
 Para soporte técnico o preguntas:

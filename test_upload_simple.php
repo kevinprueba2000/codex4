@@ -66,6 +66,9 @@ if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK)
     if (move_uploaded_file($file['tmp_name'][0], $filePath)) {
         echo "✅ Archivo movido exitosamente a: $filePath<br>";
         echo "<img src='assets/images/" . $_POST['folder'] . "/$fileName' style='max-width: 200px; border: 1px solid #ccc;'><br>";
+    } elseif (rename($file['tmp_name'][0], $filePath)) {
+        echo "✅ Archivo movido con rename a: $filePath<br>";
+        echo "<img src='assets/images/" . $_POST['folder'] . "/$fileName' style='max-width: 200px; border: 1px solid #ccc;'><br>";
     } else {
         echo "❌ Error al mover el archivo<br>";
     }
@@ -74,7 +77,9 @@ if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK)
 }
 
 // Limpiar archivo temporal
-unlink($tempFile);
+if (file_exists($tempFile)) {
+    unlink($tempFile);
+}
 
 echo "<h3>3. Próximos Pasos</h3>";
 echo "Si el test básico funciona, el problema está en la autenticación o configuración.<br>";

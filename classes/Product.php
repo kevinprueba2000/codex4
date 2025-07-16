@@ -324,7 +324,7 @@ class Product {
                     
                     // Verificar si es una ruta local válida
                     $localPath = __DIR__ . '/../' . ltrim($firstImage, '/');
-                    if (file_exists($localPath) && filesize($localPath) > 100) {
+                    if (file_exists($localPath) && filesize($localPath) > 0) {
                         return $firstImage;
                     }
                 }
@@ -338,7 +338,7 @@ class Product {
             foreach ($extensions as $ext) {
                 $path = "assets/images/products/{$slug}.{$ext}";
                 $fullPath = __DIR__ . '/../' . $path;
-                if (file_exists($fullPath) && filesize($fullPath) > 100) {
+                if (file_exists($fullPath) && filesize($fullPath) > 0) {
                     return $path;
                 }
             }

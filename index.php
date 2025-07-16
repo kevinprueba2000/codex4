@@ -183,7 +183,7 @@ $categories = $category->getAllCategories();
                 </div>
                 
                 <div class="col-lg-6 hero-image text-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                    <img src="assets/images/placeholder.jpg"
                          alt="Tecnología y Innovación" class="img-fluid">
                 </div>
             </div>

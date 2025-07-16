@@ -26,7 +26,7 @@ if (!empty($productData['images'])) {
     }
 }
 
-$mainImage = $productImages[0] ?? 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+$mainImage = $productImages[0] ?? 'assets/images/placeholder.jpg';
 
 // Obtener categoría del producto
 $productCategory = $category->getCategoryById($productData['category_id']);

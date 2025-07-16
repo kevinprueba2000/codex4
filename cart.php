@@ -291,7 +291,7 @@ $product = new Product();
                     id: item.id,
                     name: `Producto ${item.id}`,
                     price: 99000,
-                    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+                    image: 'assets/images/placeholder.jpg'
                 };
                 
                 const itemTotal = product.price * item.quantity;
